@@ -3,7 +3,7 @@
 #define _SEQUENCELIST_H
 #include "stdlib.h"
 #include "stdio.h"
-
+//顺序表
 typedef struct TABLE {
 	int* head;
 	int length;//记录当前顺序表的长度

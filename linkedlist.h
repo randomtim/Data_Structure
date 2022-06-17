@@ -2,6 +2,7 @@
 #define _LINKEDLIST_H
 #include "stdlib.h"
 #include "stdio.h"
+//单链表
 /*
 完整的链表构成：
 1、头指针：一个普通的指针，特点是永远指向链表第一个节点的位置。
@@ -14,7 +15,7 @@
 
 typedef struct LINK {
 	int elem;//数据域，存储数据
-	struct LINK* next;//指针域，指向下一个元素
+	struct LINK* next;//指针域，指向下一个节点
 }link;//节点名，每一个节点都是一个link结构体
 
 /*不含头结点的链表的操作*/
@@ -24,8 +25,7 @@ link* Insertlinked(link* head, int newelem, int locat);
 link* DelLinked(link* head, int locat);
 int SeekLinked(link* head, int elem);
 link* AmendLinked(link* head, int newelem, int locat);
-link* IterationReverse(link* head);
-/***********************/
+
 
 
 
@@ -36,7 +36,14 @@ link* Insertlinked_H(link* head, int newelem, int locat);
 link* DelLinked_H(link* head, int locat);
 int SeekLinked_H(link* head, int elem);
 link* AmendLinked_H(link* head, int newelem, int locat);
-/**********************/
+
+
+/*链表反转函数*/
+link* IterationReverse(link* head);
+link* RecursiveReverse(link* head);
+link* HeadReverse(link* head);
+link* LocalReverse(link* head);
+
 
 #endif // !_LINKEDLIST_H
 

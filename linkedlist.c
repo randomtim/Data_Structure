@@ -310,7 +310,7 @@ link* IterationReverse(link* head)
 }
 
 
-//2、递归反转链表
+//2、递归反转链表——一般用于反转不含头结点的链表
 //功能：反转链表（不包含头结点）
 //head：需要反转的链表的头指针
 //返回值：反转完成的链表的头指针
@@ -327,15 +327,69 @@ link* RecursiveReverse(link* head)
 	    //递归每退出一层，函数中 head 指针的指向都会发生改变，都指向上一个节点。
 
 		//每退出一层，都需要改变 head->next 节点指针域的指向，同时令 head 所指节点的指针域为 NULL。
-		head->next->next = head;//每层递归，此head指向上一个节点的地址
+		head->next->next = head;
 		head->next = NULL;
-		//每一层递归结束，都要将新的头指针返回给上一层。由此，即可保证整个递归过程中，能够一直找得到新链表的表头。
+		//每一层总是返回新链表的表头，确保能找到链表首地址。
 		return newhead;
 
 	}
+}
 
 
+//3、头插法反转链表
+//功能：反转链表
+//head：需要反转的链表的头指针
+//返回值：新链表地址
+link* HeadReverse(link* head)
+{
+	if (head==NULL||head->next==NULL)
+	{
+		return head;
+	}
+	link* newhead = NULL;//建立一个新的头指针
+	link* temp = NULL;//建立一个临时指针
 
 
+	while (head!=NULL)
+	{
+		temp = head;
+		//将temp节点从链表中摘除
+		head = temp->next;
 
+		//将temp节点插入到新链表的头部
+		temp->next = newhead;
+		newhead = temp;
+	}
+
+	return newhead;
+}
+
+//4、就地逆转法反转链表
+//功能：反转链表
+//head:待反转的链表的头指针
+//返回值：反转完成后的头指针
+link* LocalReverse(link* head)
+{
+	link* begin = NULL;
+	link* end = NULL;
+
+	if (head==NULL||head->next==NULL)
+	{
+		return head;
+	}
+	begin = head;
+	end = head->next;
+
+	while (begin->next!=NULL)
+	{
+		//将end节点从链表中摘除
+		begin->next = end->next;
+		//将end节点移至链表开头
+		end->next = head;
+		head = end;
+		//调整end指向，使其指向下一个移动的节点
+		end = begin->next;
+	}
+
+	return head;
 }
